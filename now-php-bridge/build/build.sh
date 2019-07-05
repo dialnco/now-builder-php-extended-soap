@@ -11,5 +11,6 @@ docker run now-php-docker-image /bin/cat /usr/lib64/php/modules/json.so > ../nat
 docker run now-php-docker-image /bin/cat /usr/lib64/php/modules/mbstring.so > ../native/modules/mbstring.so
 docker run now-php-docker-image /bin/cat /usr/lib64/php/modules/mysqli.so > ../native/modules/mysqli.so
 docker run now-php-docker-image /bin/cat /usr/lib64/mysql/libmysqlclient.so.16 > ../native/modules/libmysqlclient.so.16
+docker run now-php-docker-image /bin/cat /usr/lib64/php/modules/soap.so > ../native/modules/soap.so
 docker run now-php-docker-image /bin/cat /usr/lib64/php/modules/opcache.so > ../native/modules/opcache.so
 chmod +x ../native/php-fpm

@@ -6,6 +6,7 @@ cp /usr/lib64/php/modules/json.so /root/app/modules/json.so
 cp /usr/lib64/php/modules/mbstring.so /root/app/modules/mbstring.so
 cp /usr/lib64/php/modules/mysqli.so /root/app/modules/mysqli.so
 cp /usr/lib64/mysql/libmysqlclient.so.16 /root/app/modules/libmysqlclient.so.16
+cp /usr/lib64/php/modules/soap.so /root/app/modules/soap.so
 cp /usr/lib64/php/modules/opcache.so /root/app/modules/opcache.so
 rm -rf $(which php)
 rm -rf $(which php-fpm)

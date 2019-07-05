@@ -17,6 +17,6 @@
     "@now/build-utils": "^0.7.4",
     "@now/php-bridge": "^0.5.3",
     "fastcgi-client": "0.0.1",
-    "now-php-bridge-soap": "^1.0.1"
+    "now-php-bridge-soap": "^1.0.5"
   }
 }

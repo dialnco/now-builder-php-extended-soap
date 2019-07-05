@@ -2,7 +2,7 @@
 
 const assert = require('assert');
 const fs = require('fs');
-const { join: pathJoin } = require('path');
+const { join: pathJoin, basename } = require('path');
 const { parse: parseUrl } = require('url');
 const { query } = require('./fastcgi/index.js');
 
@@ -64,10 +64,7 @@ async function transformFromAwsRequest({ method, path, headers, body }) {
   const { pathname, search, query: queryString } = parseUrl(path);
   let requestUri = pathname + (search || '');
 
-  let filename = pathJoin(
-    '/var/task/user',
-    process.env.NOW_ENTRYPOINT || pathname
-  );
+  let filename = pathJoin('/var/task/user', pathname);
   if (await isDirectory(filename)) {
     if (!filename.endsWith('/')) {
       filename += '/';
@@ -81,6 +78,7 @@ async function transformFromAwsRequest({ method, path, headers, body }) {
   params.REQUEST_URI = requestUri;
   params.QUERY_STRING = queryString || ''; // can be null
   params.SCRIPT_FILENAME = filename;
+  params.SCRIPT_NAME = pathJoin('/', basename(filename));
   params.SERVER_PROTOCOL = 'HTTP/1.1';
   params.SERVER_PORT = 443;
   params.HTTPS = 'on';

@@ -24,8 +24,8 @@ async function startPhp() {
     ['-c', 'php.ini', '--fpm-config', 'php-fpm.ini', '--nodaemonize'],
     {
       stdio: 'inherit',
-      cwd: '/var/task/native',
-    },
+      cwd: '/var/task/native'
+    }
   );
 
   child.on('exit', () => {
@@ -33,7 +33,7 @@ async function startPhp() {
     process.exit(1);
   });
 
-  child.on('error', (error) => {
+  child.on('error', error => {
     console.error(error);
     process.exit(1);
   });
@@ -42,7 +42,7 @@ async function startPhp() {
 
   const newConnection = createConnection({
     _host: '127.0.0.1',
-    _port: 9000,
+    _port: 9000
   });
 
   await new Promise((resolve, reject) => {
@@ -70,7 +70,7 @@ async function query({ params, stdin }) {
     await startPhp();
   }
 
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     assert(connection);
 
     const chunks = [Buffer.from('HTTP/1.1 200 MAKES-PARSER-WORK\n')];
@@ -127,7 +127,7 @@ async function query({ params, stdin }) {
     connection.send(
       MSG_TYPE.FCGI_BEGIN_REQUEST,
       curReqId,
-      BEGIN_REQUEST_DATA_KEEP_CONN,
+      BEGIN_REQUEST_DATA_KEEP_CONN
     );
     connection.send(MSG_TYPE.FCGI_PARAMS, curReqId, params);
     connection.send(MSG_TYPE.FCGI_PARAMS, curReqId, null);
@@ -137,7 +137,7 @@ async function query({ params, stdin }) {
 }
 
 module.exports = {
-  query,
+  query
 };
 
 /*
